@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoMed - Premium Medical Dispatch & Supplies Delivery</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- External javascript (loaded after DOM parses) -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">
+                <i class="fas fa-heartbeat"></i> GoMed
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#catalog">Medical Supplies</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-icon" id="cart-toggle" title="View Request Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                </button>
+                <button class="btn-icon" onclick="openDialer()" title="Open Dialer (912 Helpline)" style="color: var(--primary); border-color: var(--primary-glow);">
+                    <i class="fas fa-phone-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(14, 165, 233, 0.1); color: var(--primary); font-size: 0.8em; font-weight: 600; padding: 6px 16px; border-radius: 30px; margin-bottom: 20px; border: 1px solid rgba(14, 165, 233, 0.15);">
+                        <i class="fas fa-shield-alt"></i> Emergency Response Network
+                    </div>
+                    <h2>Bringing Care to Your <span class="gradient-text">Doorstep.</span></h2>
+                    <p>GoMed bridges the gap between you and immediate medical resources. Dial 912 to connect with response dispatchers, or browse local pharmaceutical catalogs to request fast, cardless deliveries with zero initial deposit.</p>
+                    <div class="cta-group">
+                        <button class="btn-primary" onclick="triggerQuickDial('912')">
+                            <i class="fas fa-phone-volume"></i> Call Helpline Now: 912
+                        </button>
+                        <a href="#catalog" class="btn-secondary">
+                            <i class="fas fa-search-plus"></i> Search Supplies Catalog
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h4>24/7</h4>
+                            <p>Active HELPLINE</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>&lt;15m</h4>
+                            <p>Delivery Time</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>$0.00</h4>
+                            <p>Upfront Cost</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Hero Visual -->
+                <div class="hero-visual">
+                    <div class="pulse-card">
+                        <div class="pulse-header">
+                            <h3>GoMed Support Node</h3>
+                            <div class="pulse-indicator">
+                                <span class="dot"></span> Online
+                            </div>
+                        </div>
+                        <p style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 20px;">Your connection to emergency coordinators and medicine delivery networks is active and monitored.</p>
+                        <div class="pulse-grid">
+                            <div class="pulse-grid-item">
+                                <i class="fas fa-truck-loading"></i>
+                                <p>Pharmacies</p>
+                                <span>18 Active</span>
+                            </div>
+                            <div class="pulse-grid-item">
+                                <i class="fas fa-ambulance"></i>
+                                <p>Dispatchers</p>
+                                <span>12 On duty</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <p>GoMed simplifies emergency response and supply logistics, placing human wellness above transaction gateways.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Helpline Support</h3>
+                        <p>Immediate access to local triage agents and dispatchers. We coordinate supply lists and arrange delivery logs directly.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Supplies Delivery</h3>
+                        <p>Prompt, secure medicine routing from trusted local suppliers directly to your coordinates, tracked in real-time.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon-wrapper">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <h3>Patient-First Guarantee</h3>
+                        <p>Absolutely no initial prepayments needed. Your prescription or medicine list gets packed and shipped immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section id="catalog" class="catalog-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Medical Supplies Catalog</h2>
+                    <p>Request prescriptions or OTC packages. Click the add button to place items in your request manifest.</p>
+                </div>
+                
+                <!-- Search & Filters -->
+                <div class="search-filter-bar">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" class="search-input" placeholder="Search medicines by name, type, or description (e.g. Paracetamol)...">
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-category="all">All Items</button>
+                        <button class="filter-tab" data-category="painrelievers">Pain Relievers</button>
+                        <button class="filter-tab" data-category="antibiotics">Antibiotics</button>
+                        <button class="filter-tab" data-category="firstaid">First Aid & Care</button>
+                        <button class="filter-tab" data-category="chronic">Chronic Illnesses</button>
+                    </div>
+                </div>
+
+                <!-- Catalog Grid -->
+                <div class="catalog-grid" id="catalog-grid">
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Order Tracking (Activated dynamically after order submission) -->
+        <section id="tracker-section" class="tracker-section">
+            <div class="container">
+                <div class="tracker-card">
+                    <div class="tracker-header">
+                        <div class="tracker-header-info">
+                            <h3 id="tracking-id-title">Request Status: <span id="tracking-id" style="color: var(--primary);">GOMED-000000</span></h3>
+                            <p>Submitted today at <span id="tracking-time">00:00 AM</span></p>
+                        </div>
+                        <span class="tracker-badge" id="tracking-badge-text">Processing</span>
+                    </div>
+
+                    <!-- Progress Stepper -->
+                    <div class="tracker-steps">
+                        <div class="tracker-progress-line" id="tracker-progress-line"></div>
+                        <div class="tracker-step" id="step-1">
+                            <div class="step-icon"><i class="fas fa-file-prescription"></i></div>
+                            <div class="step-label">Order<br>Placed</div>
+                        </div>
+                        <div class="tracker-step" id="step-2">
+                            <div class="step-icon"><i class="fas fa-box-open"></i></div>
+                            <div class="step-label">Packing<br>Supplies</div>
+                        </div>
+                        <div class="tracker-step" id="step-3">
+                            <div class="step-icon"><i class="fas fa-motorcycle"></i></div>
+                            <div class="step-label">Out for<br>Delivery</div>
+                        </div>
+                        <div class="tracker-step" id="step-4">
+                            <div class="step-icon"><i class="fas fa-house-chimney-medical"></i></div>
+                            <div class="step-label">Arrived at<br>Doorstep</div>
+                        </div>
+                    </div>
+
+                    <!-- Manifest Items Summary -->
+                    <div class="tracker-summary-items" id="tracking-summary-items">
+                        <!-- Loaded dynamically via JavaScript -->
+                    </div>
+                    
+                    <div style="margin-top: 20px; text-align: right;">
+                        <button class="btn-secondary" onclick="resetMockOrder()" style="padding: 8px 16px; font-size: 0.8em; border-radius: 8px;">
+                            Clear Track History
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="container about-grid">
+                <div class="about-visual">
+                    <span class="about-badge">Zero Cost Entry</span>
+                    <h3>The GoMed Pledge</h3>
+                    <p style="line-height: 1.6;">"When a medical emergency occurs, card transactions and payment checks should not restrict patient access to care. GoMed was founded to ensure medical services reach you before financial logistics ever block them."</p>
+                    <ul class="about-highlights">
+                        <li><i class="fas fa-check-circle"></i> Direct helpline calling to local medical hubs.</li>
+                        <li><i class="fas fa-check-circle"></i> Local drug stores catalog integration.</li>
+                        <li><i class="fas fa-check-circle"></i> Cashless delivery dispatching.</li>
+                    </ul>
+                </div>
+                <div class="about-content">
+                    <h2>About GoMed</h2>
+                    <p>At GoMed, we understand that quick and reliable medical support is critical. When standard delivery logistics take hours or require digital payment methods that you may not have active at the time, GoMed steps in.</p>
+                    <p>By connecting to our localized 912 channel, users gain immediate access to local responder desks. Our staff handles order packing directly, pulling medical materials from close-proximity pharmacies, and delivering them to your door. Payments are only due once you have received and verified your supplies.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="max-width: 320px;">
+                    <a href="#home" class="logo" style="margin-bottom: 16px;">
+                        <i class="fas fa-heartbeat"></i> GoMed
+                    </a>
+                    <p>Empowering local emergency networks, providing secure pharmaceutical access to patients when they need it most.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Direct Operations</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home Base</a></li>
+                        <li><a href="#services">Our Focus Areas</a></li>
+                        <li><a href="#catalog">Search Inventory</a></li>
+                        <li><a href="#about">Our Pledge</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="openDialer(); return false;">Dial 912</a></li>
+                        <li><a href="#catalog">Request Catalog Items</a></li>
+                        <li><a href="#tracker-section">Live Dispatch Tracker</a></li>
+                        <li><a href="#services">Local Pharmacy Network</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Helpline Helpline</h4>
+                    <p style="font-size: 0.85em; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 6px;"></i> Emergency Dialer: 912</p>
+                    <p style="font-size: 0.85em;"><i class="fas fa-envelope" style="color: var(--primary); margin-right: 6px;"></i> support@gomed.local</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GoMed. All rights reserved. Locally deployed static web application.</p>
+                <div class="footer-policy-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Dispatch</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Us Modal Dialer Overlay -->
+    <div class="modal-overlay" id="dialer-modal">
+        <div class="dialer-modal">
+            <button class="dialer-close" id="close-dialer"><i class="fas fa-times"></i></button>
+            
+            <!-- Screen 1: Keypad -->
+            <div class="dialer-screen active" id="dialer-screen-keypad">
+                <h3>GoMed Dialer</h3>
+                <p class="subtitle">Dial 912 for the GoMed Helpline</p>
+                
+                <div class="dialer-display" id="dial-number-display">---</div>
+                
+                <div class="dialer-keypad">
+                    <button class="keypad-btn" data-digit="1">1<span>o_o</span></button>
+                    <button class="keypad-btn" data-digit="2">2<span>abc</span></button>
+                    <button class="keypad-btn" data-digit="3">3<span>def</span></button>
+                    <button class="keypad-btn" data-digit="4">4<span>ghi</span></button>
+                    <button class="keypad-btn" data-digit="5">5<span>jkl</span></button>
+                    <button class="keypad-btn" data-digit="6">6<span>mno</span></button>
+                    <button class="keypad-btn" data-digit="7">7<span>pqrs</span></button>
+                    <button class="keypad-btn" data-digit="8">8<span>tuv</span></button>
+                    <button class="keypad-btn" data-digit="9">9<span>wxyz</span></button>
+                    <button class="keypad-btn" data-digit="*">*<span></span></button>
+                    <button class="keypad-btn" data-digit="0">0<span>+</span></button>
+                    <button class="keypad-btn" data-digit="#">#<span></span></button>
+                </div>
+                
+                <div class="dial-action-row">
+                    <div style="width: 64px;"></div> <!-- Spacer matching layout balance -->
+                    <button class="btn-dial" onclick="startHelplineCall()"><i class="fas fa-phone"></i></button>
+                    <button class="btn-backspace" id="dial-backspace"><i class="fas fa-backspace"></i></button>
+                </div>
+            </div>
+
+            <!-- Screen 2: Active Call -->
+            <div class="dialer-screen" id="dialer-screen-calling">
+                <div class="calling-avatar">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 style="margin-top: 12px; margin-bottom: 2px;">GoMed Dispatch Desk</h3>
+                <div class="call-timer" id="call-timer">00:00</div>
+                
+                <!-- Dynamic agent response bubbles -->
+                <div class="agent-response-bubble" id="agent-dialogue">
+                    <strong>Sarah (GoMed Agent)</strong>
+                    Connecting to the voice network...
+                </div>
+
+                <!-- Dialer Option Buttons -->
+                <div class="call-menu-options" id="call-menu-options">
+                    <!-- Populated dynamically based on calling options -->
+                </div>
+
+                <div class="call-controls">
+                    <button class="btn-call-control" title="Mute Mic"><i class="fas fa-microphone-slash"></i></button>
+                    <button class="btn-call-control" title="Speaker"><i class="fas fa-volume-up"></i></button>
+                </div>
+
+                <button class="btn-call-end" id="btn-call-end"><i class="fas fa-phone-slash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sliding Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3><i class="fas fa-prescription-bottle-alt" style="color: var(--primary);"></i> Request Manifest</h3>
+            <button class="btn-close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="cart-items-container" id="cart-items-container">
+            <!-- Populated dynamically via JavaScript -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <p>Estimated Total due:</p>
+                <div class="cart-total-price" id="cart-total-price">$0.00</div>
+            </div>
+            
+            <!-- Checkout Form -->
+            <div class="checkout-form-container" id="checkout-form-container">
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="cust-name">Patient Full Name</label>
+                        <input type="text" id="cust-name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone">Contact Phone Number</label>
+                        <input type="tel" id="cust-phone" required placeholder="+1 (555) 019-2831">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-address">Delivery Address Coordinates</label>
+                        <textarea id="cust-address" rows="2" required placeholder="123 Care Street, Medical District"></textarea>
+                    </div>
+                    <div class="no-payment-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <span>No credit card required. Delivery is completely free; item payment is collected on delivery.</span>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+                        <i class="fas fa-shipping-fast"></i> Confirm Delivery Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
