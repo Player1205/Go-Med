@@ -1,41 +1,63 @@
-/* style.css - GoMed Premium Stylesheet */
+/* 
+   style.css - GoMed Premium Stylesheet
+   ------------------------------------------------------------
+   This file manages the styling of all elements on the GoMed web page.
+   It uses CSS Variables for consistency and has clean sections for:
+   1. Typography & Theme Colors
+   2. Reset Rules (clearing browser defaults)
+   3. Header/Navbar styling
+   4. Hero/About/Services sections
+   5. Interactive Keypad dialer overlay & Cart drawer
+   6. Timeline Stepper tracker
+   7. Media Queries (making it look good on mobile phones)
+*/
 
-/* Custom Fonts & Variable Definitions */
+/* =========================================================================
+   1. CUSTOM FONTS & CSS VARIABLES
+   ========================================================================= */
+/* Importing Google Fonts: Outfit (high-tech medical headers) and Poppins (clean body text) */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg-dark: #090d16;
-    --bg-card: rgba(22, 30, 49, 0.7);
-    --border-glass: rgba(255, 255, 255, 0.08);
-    --border-glass-hover: rgba(255, 255, 255, 0.15);
+    /* Theme Backgrounds */
+    --bg-dark: #090d16;                   /* Deep dark slate background */
+    --bg-card: rgba(22, 30, 49, 0.7);     /* Transparent cards to create glassmorphism blur */
+    --border-glass: rgba(255, 255, 255, 0.08); /* Soft white borders for glass cards */
+    --border-glass-hover: rgba(255, 255, 255, 0.15); /* Brighter borders when hovered */
     
-    --primary: #0ea5e9; /* Sky blue */
-    --primary-glow: rgba(14, 165, 233, 0.4);
-    --primary-dark: #0284c7;
+    /* Interactive Colors */
+    --primary: #0ea5e9;                   /* sky blue - for links, primary buttons, and progress indicators */
+    --primary-glow: rgba(14, 165, 233, 0.4); /* Glow shadow around sky blue items */
+    --primary-dark: #0284c7;              /* Darker blue used for button hover gradients */
     
-    --secondary: #10b981; /* Emerald green */
-    --secondary-glow: rgba(16, 185, 129, 0.4);
+    --secondary: #10b981;                 /* emerald green - used for "In Stock", checkout button, success states */
+    --secondary-glow: rgba(16, 185, 129, 0.4); /* Glow shadow around green buttons */
     
-    --accent: #f59e0b; /* Amber */
+    --accent: #f59e0b;                    /* amber yellow - used for warnings, prescription (Rx) badges */
     --accent-glow: rgba(245, 158, 11, 0.4);
     
-    --danger: #ef4444; /* Rose red */
+    --danger: #ef4444;                    /* rose red - for "Out of Stock" status and call-end buttons */
     
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    /* Text Color Tones */
+    --text-primary: #f8fafc;              /* Off-white text for headers and high priority items */
+    --text-secondary: #94a3b8;            /* Slate gray text for descriptions and body paragraphs */
+    --text-muted: #64748b;                /* Dark gray text for placeholders or disabled captions */
     
+    /* Fonts and Animation Speeds */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Poppins', sans-serif;
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* standard transition speed for hover states */
 }
 
-/* Reset and Global Styles */
+/* =========================================================================
+   2. GLOBAL LAYOUT RESET & SCROLLBARS
+   ========================================================================= */
+/* Clearing default margins/paddings from browser to avoid unwanted white gaps */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Enables smooth scrolling when user clicks navbar links */
 }
 
 body {
@@ -43,57 +65,61 @@ body {
     color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scrolling on small screens */
 }
 
-/* Scrollbar styling */
+/* Custom Scrollbar Styles for Chrome/Edge/Safari browsers */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 8px; /* Thickness of scrollbar thumb */
 }
 ::-webkit-scrollbar-track {
-    background: var(--bg-dark);
+    background: var(--bg-dark); /* Color of scrollbar path background */
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--border-glass-hover);
+    background: var(--border-glass-hover); /* Color of the moving scrollbar thumb */
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
+    background: var(--primary); /* Highlight color when hovered */
 }
 
-/* Typography Helpers */
+/* Typography styles */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.02em; /* brings letters closer together for professional look */
 }
 
+/* Colorful gradient text effect */
 .gradient-text {
     background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #0d9488 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; /* Clips the gradient fill strictly onto characters */
+    -webkit-text-fill-color: transparent; /* Makes core text transparent to reveal gradient behind it */
 }
 
+/* Center containers to keep content organized within 1200px max width */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* Header & Navigation */
+/* =========================================================================
+   3. HEADER & NAVIGATION BAR
+   ========================================================================= */
 header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 100; /* Keeps navbar floating on top of all page sections */
     background: rgba(9, 13, 22, 0.8);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px); /* Glassmorphism background blur effect */
     border-bottom: 1px solid var(--border-glass);
     transition: var(--transition-smooth);
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* aligns logo, links, and action buttons in a row */
     align-items: center;
     height: 80px;
 }
@@ -110,12 +136,12 @@ header {
 
 .logo i {
     color: var(--primary);
-    filter: drop-shadow(0 0 8px var(--primary-glow));
+    filter: drop-shadow(0 0 8px var(--primary-glow)); /* Glowing drop shadow behind heartbeat logo */
 }
 
 .nav-links {
     display: flex;
-    list-style: none;
+    list-style: none; /* removes default bullet points */
     gap: 32px;
     align-items: center;
 }
@@ -129,10 +155,10 @@ header {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--primary);
+    color: var(--primary); /* Highlights active or hovered links in sky blue */
 }
 
-/* Header Buttons / Badges */
+/* Header Action Buttons (Cart and Dialer buttons) */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -146,7 +172,7 @@ header {
     color: var(--text-primary);
     width: 44px;
     height: 44px;
-    border-radius: 50%;
+    border-radius: 50%; /* creates circular buttons */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,6 +186,7 @@ header {
     color: var(--primary);
 }
 
+/* Small red/green notification badge on top of Cart/Dialer icons */
 .btn-icon .badge {
     position: absolute;
     top: -4px;
@@ -174,20 +201,22 @@ header {
     text-align: center;
 }
 
-/* Hero Section */
+/* =========================================================================
+   4. HERO SECTION (Welcome Panel)
+   ========================================================================= */
 .hero-section {
     padding: 100px 0 80px 0;
     position: relative;
     overflow: hidden;
 }
 
-/* Ambient glow blobs */
+/* Ambient glow blobs: background circles that blur to create a premium glow look */
 .hero-section::before, .hero-section::after {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
-    z-index: -1;
+    filter: blur(120px); /* Blurs solid colors to a soft glow */
+    z-index: -1; /* Keeps them strictly behind text */
     opacity: 0.15;
 }
 
@@ -196,7 +225,7 @@ header {
     right: 5%;
     width: 350px;
     height: 350px;
-    background: var(--primary);
+    background: var(--primary); /* Sky blue glow */
 }
 
 .hero-section::after {
@@ -204,12 +233,12 @@ header {
     left: 5%;
     width: 400px;
     height: 400px;
-    background: var(--secondary);
+    background: var(--secondary); /* Emerald green glow */
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.1fr 0.9fr; /* Splits hero layout into left text column & right card column */
     gap: 48px;
     align-items: center;
 }
@@ -230,10 +259,11 @@ header {
 .cta-group {
     display: flex;
     gap: 16px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* wraps buttons to next line on small screens */
     margin-bottom: 40px;
 }
 
+/* Sky blue button */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: #fff;
@@ -251,10 +281,11 @@ header {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* moves button slightly up on hover */
     box-shadow: 0 6px 24px rgba(14, 165, 233, 0.6);
 }
 
+/* Semi-transparent button */
 .btn-secondary {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
@@ -276,7 +307,7 @@ header {
     transform: translateY(-2px);
 }
 
-/* Statistics Badge Bar */
+/* Statistics row */
 .hero-stats {
     display: flex;
     gap: 32px;
@@ -296,7 +327,7 @@ header {
     margin: 0;
 }
 
-/* Right-side visual card */
+/* Right-side visual card showing active connection node */
 .hero-visual {
     position: relative;
     display: flex;
@@ -306,7 +337,7 @@ header {
 
 .pulse-card {
     background: var(--bg-card);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px); /* blurs elements behind card */
     border: 1px solid var(--border-glass);
     border-radius: 24px;
     padding: 32px;
@@ -316,6 +347,7 @@ header {
     position: relative;
 }
 
+/* Glowing border decoration */
 .pulse-card::before {
     content: '';
     position: absolute;
@@ -352,12 +384,13 @@ header {
     border-radius: 20px;
 }
 
+/* Active green beacon dot */
 .pulse-indicator .dot {
     width: 8px;
     height: 8px;
     background-color: var(--secondary);
     border-radius: 50%;
-    animation: beacon 1.5s infinite;
+    animation: beacon 1.5s infinite; /* loop beacon keyframes endlessly */
 }
 
 .pulse-grid {
@@ -391,7 +424,9 @@ header {
     color: var(--text-primary);
 }
 
-/* Service Cards */
+/* =========================================================================
+   5. SERVICES CARDS SECTION
+   ========================================================================= */
 .services-section {
     padding: 80px 0;
     background: rgba(255, 255, 255, 0.01);
@@ -417,7 +452,7 @@ header {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* dynamically creates columns that fit screen space */
     gap: 32px;
 }
 
@@ -432,6 +467,7 @@ header {
     overflow: hidden;
 }
 
+/* Slide-in sidebar decor on hover */
 .service-card::after {
     content: '';
     position: absolute;
@@ -451,7 +487,7 @@ header {
 }
 
 .service-card:hover::after {
-    opacity: 1;
+    opacity: 1; /* reveal border slide-in bar */
 }
 
 .service-icon-wrapper {
@@ -467,11 +503,11 @@ header {
     margin-bottom: 24px;
 }
 
+/* Custom color markers for 2nd and 3rd cards */
 .service-card:nth-child(2) .service-icon-wrapper {
     background: rgba(16, 185, 129, 0.1);
     color: var(--secondary);
 }
-
 .service-card:nth-child(2)::after {
     background: var(--secondary);
 }
@@ -480,7 +516,6 @@ header {
     background: rgba(245, 158, 11, 0.1);
     color: var(--accent);
 }
-
 .service-card:nth-child(3)::after {
     background: var(--accent);
 }
@@ -496,7 +531,9 @@ header {
     line-height: 1.6;
 }
 
-/* Interactive Medical Directory & Search */
+/* =========================================================================
+   6. INTERACTIVE MEDICAL CATALOG & SEARCH
+   ========================================================================= */
 .catalog-section {
     padding: 80px 0;
 }
@@ -546,10 +583,11 @@ header {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Category Filters tabs horizontal scrolling */
 .filter-tabs {
     display: flex;
     gap: 10px;
-    overflow-x: auto;
+    overflow-x: auto; /* enables swiping tabs on touch screen mobile devices */
     padding-bottom: 4px;
 }
 
@@ -563,7 +601,7 @@ header {
     font-size: 0.85em;
     font-weight: 500;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: nowrap; /* avoids text breaking onto next line */
     transition: var(--transition-smooth);
 }
 
@@ -580,6 +618,7 @@ header {
     gap: 24px;
 }
 
+/* Individual Medicine Card blocks */
 .medicine-card {
     background: var(--bg-card);
     border: 1px solid var(--border-glass);
@@ -587,7 +626,7 @@ header {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* pushes footer pricing / add buttons to bottom edge */
     transition: var(--transition-smooth);
 }
 
@@ -650,7 +689,7 @@ header {
     font-size: 0.8em;
     line-height: 1.5;
     margin-bottom: 16px;
-    flex-grow: 1;
+    flex-grow: 1; /* fills up empty vertical height space inside card description */
 }
 
 .medicine-footer {
@@ -674,6 +713,7 @@ header {
     font-weight: 400;
 }
 
+/* Button to add/remove medicine item to manifest */
 .btn-add-cart {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border-glass);
@@ -695,6 +735,7 @@ header {
     box-shadow: 0 4px 10px var(--primary-glow);
 }
 
+/* Success status when already inside cart */
 .btn-add-cart.added {
     background: var(--secondary);
     border-color: var(--secondary);
@@ -702,7 +743,9 @@ header {
     box-shadow: 0 4px 10px var(--secondary-glow);
 }
 
-/* About Us Section */
+/* =========================================================================
+   7. ABOUT US SECTION
+   ========================================================================= */
 .about-section {
     padding: 80px 0;
     border-top: 1px solid var(--border-glass);
@@ -779,27 +822,30 @@ header {
     margin-bottom: 24px;
 }
 
-/* Call Us Modal / Interactive Dialing Overlay */
+/* =========================================================================
+   8. DIALER POPUP OVERLAY MODAL
+   ========================================================================= */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(5, 7, 12, 0.85);
+    background: rgba(5, 7, 12, 0.85); /* semi transparent dark overlay mask */
     backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 0;                   /* starts invisible */
+    pointer-events: none;         /* ignores mouse clicks while hidden */
     transition: opacity 0.4s ease;
 }
 
+/* Triggered when dialer display function sets 'active' */
 .modal-overlay.active {
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: auto; /* allows keypad click events */
 }
 
 .dialer-modal {
@@ -810,16 +856,17 @@ header {
     max-width: 360px;
     padding: 32px 24px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    transform: scale(0.9);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.9); /* starts slightly scaled down */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* bounce scale-up effect */
     position: relative;
     text-align: center;
 }
 
 .modal-overlay.active .dialer-modal {
-    transform: scale(1);
+    transform: scale(1); /* scales up to regular size when active */
 }
 
+/* Close (X) icon positioning */
 .dialer-close {
     position: absolute;
     top: 20px;
@@ -836,16 +883,15 @@ header {
     color: var(--text-primary);
 }
 
-/* Calling screens */
+/* Dialer screen panels toggler */
 .dialer-screen {
-    display: none;
+    display: none; /* screens are hidden by default */
 }
 
 .dialer-screen.active {
-    display: block;
+    display: block; /* only active screen is shown */
 }
 
-/* Screen 1: Keypad dialer */
 .dialer-screen h3 {
     margin-bottom: 6px;
 }
@@ -856,6 +902,7 @@ header {
     margin-bottom: 24px;
 }
 
+/* Dialer numeric display panel box */
 .dialer-display {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-glass);
@@ -873,6 +920,7 @@ header {
     color: var(--text-primary);
 }
 
+/* 3x4 layout keypad key grid layout */
 .dialer-keypad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -918,6 +966,7 @@ header {
     gap: 16px;
 }
 
+/* Green dial button */
 .btn-dial {
     background: var(--secondary);
     color: white;
@@ -939,6 +988,7 @@ header {
     transform: scale(1.05);
 }
 
+/* Backspace button style */
 .btn-backspace {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border-glass);
@@ -959,7 +1009,7 @@ header {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* Screen 2: Calling active screen */
+/* SCREEN 2: ACTIVE CALL STYLES */
 .calling-avatar {
     width: 100px;
     height: 100px;
@@ -975,6 +1025,7 @@ header {
     position: relative;
 }
 
+/* Ripple waves animated behind active avatar circles */
 .calling-avatar::before, .calling-avatar::after {
     content: '';
     position: absolute;
@@ -999,6 +1050,7 @@ header {
     margin-bottom: 24px;
 }
 
+/* Dialog bubbles where Sarah greets caller */
 .agent-response-bubble {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-glass);
@@ -1017,6 +1069,7 @@ header {
     margin-bottom: 4px;
 }
 
+/* Decorative phone controllers (mute / speaker) */
 .call-controls {
     display: flex;
     justify-content: center;
@@ -1045,6 +1098,7 @@ header {
     color: var(--primary);
 }
 
+/* Red Hangup button */
 .btn-call-end {
     background: var(--danger);
     color: white;
@@ -1067,7 +1121,7 @@ header {
     box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
 }
 
-/* Call options menu (to order or talk) */
+/* Speech choice options selector buttons */
 .call-menu-options {
     display: flex;
     flex-direction: column;
@@ -1091,11 +1145,13 @@ header {
     border-color: var(--primary);
 }
 
-/* Sliding Cart Drawer */
+/* =========================================================================
+   9. SLIDING CART DRAWER (Request Sidebar)
+   ========================================================================= */
 .cart-drawer {
     position: fixed;
     top: 0;
-    right: -420px;
+    right: -420px; /* starts hidden off the right side screen boundary */
     width: 100%;
     max-width: 400px;
     height: 100%;
@@ -1105,9 +1161,10 @@ header {
     z-index: 200;
     display: flex;
     flex-direction: column;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* slide transition timing */
 }
 
+/* Slide in from side when cart button clicked */
 .cart-drawer.active {
     right: 0;
 }
@@ -1140,9 +1197,10 @@ header {
     color: var(--text-primary);
 }
 
+/* Inside items list container */
 .cart-items-container {
-    flex-grow: 1;
-    overflow-y: auto;
+    flex-grow: 1; /* stretches to fill all available vertical center height */
+    overflow-y: auto; /* allows scroll inside cart items list */
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -1188,6 +1246,7 @@ header {
     gap: 12px;
 }
 
+/* Plus / Minus quantity adjuster keys */
 .qty-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-glass);
@@ -1214,6 +1273,7 @@ header {
     text-align: center;
 }
 
+/* Bin icon to delete item from cart */
 .btn-remove-item {
     background: none;
     border: none;
@@ -1251,7 +1311,7 @@ header {
     color: var(--text-primary);
 }
 
-/* Order Form / Checkout inside cart */
+/* Checkout form inside the cart drawer (revealed only if cart array has elements) */
 .checkout-form-container {
     margin-top: 16px;
     border-top: 1px dashed var(--border-glass);
@@ -1293,6 +1353,7 @@ header {
     background: rgba(255, 255, 255, 0.04);
 }
 
+/* Information card warning user that payment is post-delivery */
 .no-payment-notice {
     background: rgba(245, 158, 11, 0.05);
     border: 1px solid rgba(245, 158, 11, 0.15);
@@ -1310,13 +1371,16 @@ header {
     margin-top: 2px;
 }
 
-/* Order Tracking Widget / Section */
+/* =========================================================================
+   10. LIVE ORDER TRACKING SECTION (Delivery Timeline)
+   ========================================================================= */
 .tracker-section {
     padding: 80px 0;
-    display: none; /* hidden until order placed */
+    display: none; /* hidden until order checkout form is submitted */
     border-top: 1px solid var(--border-glass);
 }
 
+/* Revealed when javascript adds 'active' status class */
 .tracker-section.active {
     display: block;
 }
@@ -1360,7 +1424,7 @@ header {
     font-weight: 600;
 }
 
-/* Progress Stepper Timeline */
+/* Stepper horizontal timeline layout */
 .tracker-steps {
     display: flex;
     justify-content: space-between;
@@ -1368,6 +1432,7 @@ header {
     margin-bottom: 32px;
 }
 
+/* Unfilled background connector bar */
 .tracker-steps::before {
     content: '';
     position: absolute;
@@ -1379,17 +1444,19 @@ header {
     z-index: 1;
 }
 
+/* Filled active connector line bar (color shifts to highlight delivery progress) */
 .tracker-progress-line {
     position: absolute;
     top: 24px;
     left: 40px;
-    width: 0%; /* updated via JS */
+    width: 0%; /* width is modified by app.js (0% -> 33% -> 66% -> 100%) */
     height: 4px;
     background: linear-gradient(to right, var(--primary), var(--secondary));
     z-index: 1;
-    transition: width 0.8s ease;
+    transition: width 0.8s ease; /* smooth expanding animation */
 }
 
+/* Steps circular nodes */
 .tracker-step {
     position: relative;
     z-index: 2;
@@ -1423,7 +1490,7 @@ header {
     transition: var(--transition-smooth);
 }
 
-/* Stepper state modifiers */
+/* Step active state: glowing blue boundary rings */
 .tracker-step.active .step-icon {
     background: var(--bg-dark);
     border-color: var(--primary);
@@ -1436,6 +1503,7 @@ header {
     font-weight: 600;
 }
 
+/* Step completed status: filled green check buttons */
 .tracker-step.completed .step-icon {
     background: var(--secondary);
     border-color: var(--secondary);
@@ -1447,6 +1515,7 @@ header {
     color: var(--secondary);
 }
 
+/* Order manifest receipts list summary card */
 .tracker-summary-items {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-glass);
@@ -1478,7 +1547,9 @@ header {
     color: var(--text-primary);
 }
 
-/* Footer Section */
+/* =========================================================================
+   11. FOOTER SECTION
+   ========================================================================= */
 footer {
     background-color: #05070c;
     border-top: 1px solid var(--border-glass);
@@ -1524,7 +1595,7 @@ footer {
 
 .footer-links a:hover {
     color: var(--primary);
-    padding-left: 4px;
+    padding-left: 4px; /* moves link text slightly right when hovered */
 }
 
 .social-links {
@@ -1582,7 +1653,10 @@ footer {
     color: var(--text-primary);
 }
 
-/* Animations declarations */
+/* =========================================================================
+   12. KEYFRAMES DECLARATIONS (Custom Animations definitions)
+   ========================================================================= */
+/* A. Pulsing ring animation for green beacon dot inside active support card */
 @keyframes beacon {
     0% {
         transform: scale(0.95);
@@ -1590,7 +1664,7 @@ footer {
     }
     70% {
         transform: scale(1);
-        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+        box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); /* Ring fades out as it expands */
     }
     100% {
         transform: scale(0.95);
@@ -1598,6 +1672,7 @@ footer {
     }
 }
 
+/* B. Ripple rings animation for the phone calling screen avatar circles */
 @keyframes ripple {
     0% {
         transform: scale(1);
@@ -1605,48 +1680,54 @@ footer {
     }
     100% {
         transform: scale(1.5);
-        opacity: 0;
+        opacity: 0; /* circle completely disappears at the outer limit */
     }
 }
 
-/* Media Queries for Mobile Responsiveness */
+/* =========================================================================
+   13. MEDIA QUERIES FOR MOBILE DEVICES (Responsive styles)
+   ========================================================================= */
+/* Medium Viewports (Tablets and small laptops) */
 @media (max-width: 992px) {
     .hero-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stacks text column above support node card */
         text-align: center;
         gap: 40px;
     }
     .hero-content p {
-        margin: 0 auto 32px auto;
+        margin: 0 auto 32px auto; /* centers description paragraph text */
     }
     .cta-group {
-        justify-content: center;
+        justify-content: center; /* centers button layout horizontally */
     }
     .hero-stats {
         justify-content: center;
     }
     .about-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* stacks about blocks vertically */
     }
     .about-visual {
-        order: 2;
+        order: 2; /* places the visual block below text block */
     }
 }
 
+/* Small Viewports (Mobile Phones) */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* simple hidden layout for mobile nav */
+        display: none; /* hides center links in navbar for clean phone look */
     }
     .navbar {
         justify-content: space-between;
     }
     .hero-content h2 {
-        font-size: 2.8em;
+        font-size: 2.8em; /* scales down headline text size to fit screen */
     }
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
+    
+    /* Stepper: Switches timeline steps layout from horizontal to vertical format */
     .tracker-steps {
         flex-direction: column;
         align-items: flex-start;
@@ -1658,17 +1739,17 @@ footer {
         bottom: 0;
         left: 44px;
         width: 4px;
-        height: auto;
+        height: auto; /* stretches background connector line vertically instead */
     }
     .tracker-progress-line {
         top: 0;
         left: 44px;
         width: 4px;
-        height: 0%; /* updated via JS vertically */
+        height: 0%; /* height is animated vertical height instead of width */
         transition: height 0.8s ease;
     }
     .tracker-step {
-        flex-direction: row;
+        flex-direction: row; /* places step text label adjacent to circular icon */
         width: 100%;
         text-align: left;
         gap: 16px;
